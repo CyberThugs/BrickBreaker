@@ -62,10 +62,19 @@ function draw() {
 	if(ball.x + ball.speedX > canvas.width - ball.radius || ball.x + ball.speedX < ball.radius) {
 		ball.speedX = -ball.speedX;
 	}
-
-	if(ball.y + ball.speedY > canvas.height - ball.radius || ball.y + ball.speedY < ball.radius) {
+	if(ball.y + ball.speedY < ball.radius) {
 		ball.speedY = -ball.speedY;
 	}
+	else if(ball.y + ball.speedY > canvas.height - ball.radius) {
+		if(ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
+			ball.speedY = -ball.speedY;
+		}
+		else {
+			alert("GAME OVER");
+			document.location.reload();
+		}
+	}
+
 
 	if(rightPressed && paddle.x < canvas.width - paddle.width) {
 		paddle.x += 7;
