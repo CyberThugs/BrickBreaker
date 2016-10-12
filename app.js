@@ -28,7 +28,6 @@ let brickOffsetLeft = 30;
 
 let score = 0;
 
-
 function changeColor(color) {
 	switch (color){
 		case 'red':color = 'green';break;
@@ -53,7 +52,15 @@ for(c=0; c<brickColumnCount; c++) {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
+
+function mouseMoveHandler(e) {
+	let relativeX = e.clientX - canvas.offsetLeft;
+	if (relativeX > 0 && relativeX < canvas.width) {
+		paddle.x = relativeX - paddle.width / 2;
+	}
+}
 function keyDownHandler(e) {
 	if(e.keyCode == 39) {
 		rightPressed = true;
