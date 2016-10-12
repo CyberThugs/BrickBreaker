@@ -67,7 +67,7 @@ function collisionDetection() {
                     b.status = 0;
 					score++;
 					if(score == brickColumnCount * brickRowCount){
-						alert("YOU 	WIN, CONGRATULATIONS!");
+						alert("YOU 	WIN, CONGRATULATIONS! YOUR SCORE IS : " +score);
 						document.location.reload();
 					}
                 }
