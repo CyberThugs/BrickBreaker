@@ -16,6 +16,7 @@ paddle.x =(canvas.width - paddle.width) / 2;
 let rightPressed = false;
 let leftPressed = false;
 
+let color = 'red';
 
 let brickRowCount = 3;
 let brickColumnCount = 5;
@@ -26,6 +27,19 @@ let brickOffsetTop = 30;
 let brickOffsetLeft = 30;
 
 let score = 0;
+
+
+function changeColor(color) {
+	switch (color){
+		case 'red':color = 'green';break;
+		case 'green':color = '#0095DD"';break;
+		case '#0095DD"':color = 'purple';break;
+		case 'purple':color = 'yellow';break;
+		case 'yellow':color = 'pink';break;
+		case 'pink':color = 'red';break;
+	}
+	return color;
+}
 
 var bricks = [];
 for(c=0; c<brickColumnCount; c++) {
@@ -66,6 +80,7 @@ function collisionDetection() {
                     ball.speedY = -ball.speedY;
                     b.status = 0;
 					score++;
+					color = changeColor(color);
 					if(score == brickColumnCount * brickRowCount){
 						alert("YOU 	WIN, CONGRATULATIONS! YOUR SCORE IS : " +score);
 						document.location.reload();
@@ -79,7 +94,7 @@ function collisionDetection() {
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(ball.x, ball.y, 10, 0, Math.PI*2);
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = color;
 	ctx.fill();
 	ctx.closePath();
 }
