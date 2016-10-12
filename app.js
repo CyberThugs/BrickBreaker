@@ -16,6 +16,26 @@ paddle.x =(canvas.width - paddle.width) / 2;
 let rightPressed = false;
 let leftPressed = false;
 
+
+let brickRowCount = 3;
+let brickColumnCount = 5;
+let brickWidth = 75;
+let brickHeight = 20;
+let brickPadding = 10;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 30;
+
+
+var bricks = [];
+for(c=0; c<brickColumnCount; c++) {
+	bricks[c] = [];
+	for(r=0; r<brickRowCount; r++) {
+		bricks[c][r] = { x: 0, y: 0 };
+	}
+}
+
+
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -53,9 +73,10 @@ function drawPaddle() {
 	ctx.closePath();
 }
 
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	
+
 	drawBall();
 	drawPaddle();
 
